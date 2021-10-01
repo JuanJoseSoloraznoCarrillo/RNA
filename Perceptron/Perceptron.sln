@@ -15,6 +15,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "NeuronaMonocapa", "..\Neuro
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TestTwoPerceptron", "..\TestTwoPerceptron\TestTwoPerceptron.pyproj", "{A2CD4D94-C593-4119-BE70-AAC57E15E3C7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejercicios", "Ejercicios", "{EECEF5B7-9C9A-420F-A8AC-9055B6891C78}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Ejercicio_Biblioteca", "..\Entregables\Ejercicio_Biblioteca\Ejercicio_Biblioteca.pyproj", "{0FF36D71-C2AD-496E-B85B-F6EC42D774C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,8 @@ Global
 		{A82A63AC-2072-4A4A-923C-31C05B16C5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2CD4D94-C593-4119-BE70-AAC57E15E3C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2CD4D94-C593-4119-BE70-AAC57E15E3C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF36D71-C2AD-496E-B85B-F6EC42D774C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF36D71-C2AD-496E-B85B-F6EC42D774C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +49,7 @@ Global
 		{33FEEBD8-41D8-4BF4-99B4-D57F0673D471} = {055930F9-E73F-4936-8BB1-7C01F35A3317}
 		{A82A63AC-2072-4A4A-923C-31C05B16C5C9} = {055930F9-E73F-4936-8BB1-7C01F35A3317}
 		{A2CD4D94-C593-4119-BE70-AAC57E15E3C7} = {055930F9-E73F-4936-8BB1-7C01F35A3317}
+		{0FF36D71-C2AD-496E-B85B-F6EC42D774C3} = {EECEF5B7-9C9A-420F-A8AC-9055B6891C78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {51FCD4B1-AE50-47AE-8F7E-17FB1480DF9D}
