@@ -4,7 +4,7 @@ import numpy as np
 import random
 import os
 
-class DoblePercept:
+class DoblePercept():
     
     #Datos
     data = np.array([[0, 0],[0, 1],[1, 0],[1, 1]])
@@ -27,15 +27,16 @@ class DoblePercept:
 
     def Train():
         #Datos
-        data = np.array([[0, 0],[0, 1],[1, 0],[1, 1]])
+        data = np.array([[0, 0,0, 0],[0, 1,0, 0],[1, 0,0, 0],[1, 1,0, 0]])
 
-        dataTrain = np.array([[1, 1],[1, 0],[0, 1],[0, 0]])
+        #dataTrain = np.array([[1, 1],[1, 0],[0, 1],[0, 0]])
 
-        wight = np.array([random.random()*10, random.random()*10, random.random()*10, random.random()*10])
-        bias  = np.array([random.random()*10, random.random()*10])
+        wight   = np.array([random.random()*10, random.random()*10, random.random()*10, random.random()*10, random.random()*10])
+        wight_2 = np.array([random.random()*10, random.random()*10, random.random()*10, random.random()*10, random.random()*10])
+        #bias   = np.array([random.random()*10, random.random()*10])
 
         LRate   = 0.3
-        file    = open("wight_OR.txt", "w")
+        file    = open("wight_NOT.txt", "w")
         learn_1 = True
         learn_2 = True
         epoch   = 0
@@ -53,7 +54,9 @@ class DoblePercept:
             for i in range(len(data)):
 
                 #Neuron_1
-                Sum = data[i][0] * wight[0] + data[i][1] * wight[1] + bias[0]
+                Sum  = data[i][0] * wight[0]   + data[i][1] * wight[1] + data[i][0] * wight_2[2] + data[i][1] * wight_2[3]+ data[0]
+                Sum2 = data[i][0] * wight_2[2] + data[i][1] * wight_2[3] + bias[1]
+
                 out = DoblePercept.StepFunc(Sum) 
           
                 E1=dataTrain[i][0]-out
@@ -66,7 +69,7 @@ class DoblePercept:
 
 
                 #Neuron_2
-                Sum2 = data[i][0] * wight[2] + data[i][1] * wight[3] + bias[1]
+                
                 out2 = DoblePercept.StepFunc(Sum2)
 
                 E2=dataTrain[i][1]-out2
@@ -130,8 +133,6 @@ class DoblePercept:
         else: out1 =0
 
         print("{}, {} = {}, {}".format(x1,x2,Out_1,Out_2))
-
-
 
 DoblePercept.Train()
 DoblePercept.Test()

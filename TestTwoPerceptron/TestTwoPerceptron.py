@@ -1,179 +1,145 @@
 
   
-from __future__ import print_function
-import matplotlib,sys
-from matplotlib import pyplot as plt
+
 import numpy as np
+import random
+import os
 
-def predict(inputs,weights):
-	activation=0.0
-	for i,w in zip(inputs,weights):
-		activation += i*w 
-	return 1.0 if activation>=0.0 else 0.0
+class DoblePercept:
+    
+    #Datos
+    data = np.array([[0, 0],[0, 1],[1, 0],[1, 1]])
+    dataTrain = np.array([[1, 1],[1, 0],[0, 1],[0, 0]])
 
-def plot(matrix,weights=None,title="Prediction Matrix"):
+    wight = np.array([random.random()*10, random.random()*10, random.random()*10, random.random()*10])
+    bias  = np.array([random.random()*10, random.random()*10])
 
-	if len(matrix[0])==3: # if 1D inputs, excluding bias and ys 
-		fig,ax = plt.subplots()
-		ax.set_title(title)
-		ax.set_xlabel("i1")
-		ax.set_ylabel("Classifications")
-
-		if weights!=None:
-			y_min=-0.1
-			y_max=1.1
-			x_min=0.0
-			x_max=1.1
-			y_res=0.001
-			x_res=0.001
-			ys=np.arange(y_min,y_max,y_res)
-			xs=np.arange(x_min,x_max,x_res)
-			zs=[]
-			for cur_y in np.arange(y_min,y_max,y_res):
-				for cur_x in np.arange(x_min,x_max,x_res):
-					zs.append(predict([1.0,cur_x],weights))
-			xs,ys=np.meshgrid(xs,ys)
-			zs=np.array(zs)
-			zs = zs.reshape(xs.shape)
-			cp=plt.contourf(xs,ys,zs,levels=[-1,-0.0001,0,1],colors=('b','r'),alpha=0.1)
-		
-		c1_data=[[],[]]
-		c0_data=[[],[]]
-
-		for i in range(len(matrix)):
-			cur_i1 = matrix[i][1]
-			cur_y  = matrix[i][-1]
-
-			if cur_y==1:
-				c1_data[0].append(cur_i1)
-				c1_data[1].append(1.0)
-			else:
-				c0_data[0].append(cur_i1)
-				c0_data[1].append(0.0)
-
-		plt.xticks(np.arange(x_min,x_max,0.1))
-		plt.yticks(np.arange(y_min,y_max,0.1))
-		plt.xlim(0,1.05)
-		plt.ylim(-0.05,1.05)
-
-		c0s = plt.scatter(c0_data[0],c0_data[1],s=40.0,c='r',label='Class -1')
-		c1s = plt.scatter(c1_data[0],c1_data[1],s=40.0,c='b',label='Class 1')
-
-		plt.legend(fontsize=10,loc=1)
-		plt.show()
-		return
-
-	if len(matrix[0])==4: # if 2D inputs, excluding bias and ys
-		fig,ax = plt.subplots()
-		ax.set_title(title)
-		ax.set_xlabel("i1")
-		ax.set_ylabel("i2")
-
-		if weights!=None:
-			map_min=0.0
-			map_max=1.1
-			y_res=0.001
-			x_res=0.001
-			ys=np.arange(map_min,map_max,y_res)
-			xs=np.arange(map_min,map_max,x_res)
-			zs=[]
-			for cur_y in np.arange(map_min,map_max,y_res):
-				for cur_x in np.arange(map_min,map_max,x_res):
-					zs.append(predict([1.0,cur_x,cur_y],weights))
-			xs,ys=np.meshgrid(xs,ys)
-			zs=np.array(zs)
-			zs = zs.reshape(xs.shape)
-			cp=plt.contourf(xs,ys,zs,levels=[-1,-0.0001,0,1],colors=('b','r'),alpha=0.1)
-
-		c1_data=[[],[]]
-		c0_data=[[],[]]
-		for i in range(len(matrix)):
-			cur_i1 = matrix[i][1]
-			cur_i2 = matrix[i][2]
-			cur_y  = matrix[i][-1]
-			if cur_y==1:
-				c1_data[0].append(cur_i1)
-				c1_data[1].append(cur_i2)
-			else:
-				c0_data[0].append(cur_i1)
-				c0_data[1].append(cur_i2)
-
-		plt.xticks(np.arange(0.0,1.1,0.1))
-		plt.yticks(np.arange(0.0,1.1,0.1))
-		plt.xlim(0,1.05)
-		plt.ylim(0,1.05)
-
-		c0s = plt.scatter(c0_data[0],c0_data[1],s=40.0,c='r',label='Class -1')
-		c1s = plt.scatter(c1_data[0],c1_data[1],s=40.0,c='b',label='Class 1')
-
-		plt.legend(fontsize=10,loc=1)
-		plt.show()
-		return
-	
-	print("Matrix dimensions not covered.")
-
-# each matrix row: up to last row = inputs, last row = y (classification)
-def accuracy(matrix,weights):
-	num_correct = 0.0
-	preds       = []
-	for i in range(len(matrix)):
-		pred   = predict(matrix[i][:-1],weights) # get predicted classification
-		preds.append(pred)
-		if pred==matrix[i][-1]: num_correct+=1.0 
-	print("Predictions:",preds)
-	return num_correct/float(len(matrix))
-
-# each matrix row: up to last row = inputs, last row = y (classification)
-def train_weights(matrix,weights,nb_epoch=10,l_rate=1.00,do_plot=False,stop_early=True,verbose=True):
-	for epoch in range(nb_epoch):
-		cur_acc = accuracy(matrix,weights)
-		print("\nEpoch %d \nWeights: "%epoch,weights)
-		print("Accuracy: ",cur_acc)
-		
-		if cur_acc==1.0 and stop_early: break 
-		#if do_plot and len(matrix[0])==4: plot(matrix,weights) # if 2D inputs, excluding bias
-		if do_plot: plot(matrix,weights,title="Epoch %d"%epoch)
-		
-		for i in range(len(matrix)):
-			prediction = predict(matrix[i][:-1],weights) # get predicted classificaion
-			error      = matrix[i][-1]-prediction		 # get error from real classification
-			if verbose: sys.stdout.write("Training on data at index %d...\n"%(i))
-			for j in range(len(weights)): 				 # calculate new weight for each node
-				if verbose: sys.stdout.write("\tWeight[%d]: %0.5f --> "%(j,weights[j]))
-				weights[j] = weights[j]+(l_rate*error*matrix[i][j]) 
-				if verbose: sys.stdout.write("%0.5f\n"%(weights[j]))
-
-	#if len(matrix[0])==4: plot(matrix,weights) # if 2D inputs, excluding bias
-	plot(matrix,weights,title="Final Epoch")
-	return weights 
-
-def main():
-
-	nb_epoch		= 10
-	l_rate  		= 1.0
-	plot_each_epoch	= False
-	stop_early 		= True
-
-	part_A = True  
+    LRate = 0.3
+    file  = open("wight_OR.txt", "w")
 
 
-	   # 2 inputs (including single bias input), 2 weights
-	nb_epoch = 1000
-
-				# 	Bias 	i1 		y
-	matrix = [	[1.00,	0.08,	1.0],
-				[1.00,	0.10,	0.0],
-				[1.00,	0.26,	1.0],
-				[1.00,	0.35,	0.0],
-				[1.00,	0.45,	1.0],
-				[1.00,	0.60,	1.0],
-				[1.00,	0.70,	0.0],
-				[1.00,	0.92,	0.0]]
-
-	weights= [	 0.0,	0.0		] # initial weights specified in problem
-
-	train_weights(matrix,weights=weights,nb_epoch=nb_epoch,l_rate=l_rate,do_plot=plot_each_epoch,stop_early=stop_early)
+    #StepFunction
+    def StepFunc(Sum):
+        if Sum > 0:
+           out = 1
+        else: out =0
+        return out
 
 
-if __name__ == '__main__':
-	main()
+#    def Train():
+    def Train(wight,bias):
+#        Datos
+        data = np.array([[0, 0],[0, 1],[1, 0],[1, 1]])
+#
+        dataTrain = np.array([[1, 1],[1, 0],[0, 1],[0, 0]])
+
+#        wight = np.array([random.random()*10, random.random()*10, random.random()*10, random.random()*10])
+#        bias  = np.array([random.random()*10, random.random()*10])
+
+        LRate   = 0.3
+        file    = open("wight_OR.txt", "w")
+        learn_1 = True
+        learn_2 = True
+        epoch   = 0
+
+        #while (learn_1):
+        while (learn_1 and learn_2):
+    
+            learn_1 = False
+            learn_2 = False
+ 
+            epoch += 1
+
+            print(" Training: ", epoch, " wight -----> ", wight)
+
+
+            for i in range(len(data)):
+
+                #Neuron_1
+                Sum = data[i][0] * wight[0] + data[i][1] * wight[1] + bias[0]
+                out = DoblePercept.StepFunc(Sum) 
+          
+                E1=dataTrain[i][0]-out
+
+                if E1 != 0:
+                    wight[0]+=LRate*E1*data[i][0]
+                    wight[1]+=LRate*E1*data[i][1]
+                    bias [0]+=LRate*E1
+                    learn_1  = True
+
+
+                #Neuron_2
+                Sum2 = data[i][0] * wight[2] + data[i][1] * wight[3] + bias[1]
+                out2 = DoblePercept.StepFunc(Sum2)
+
+                E2=dataTrain[i][1]-out2
+
+
+                if E2 != 0:
+                    wight[2]+=LRate*E2*data[i][0]
+                    wight[3]+=LRate*E2*data[i][1]
+                    bias [1]+=LRate*E2
+                 #   learn_1  = True
+                    learn_2  = True
+        
+            print("\n E1-----> ", E1, "Out-------> ",out)
+            print(" E2-----> ", E2, "Out2------> ",out2)
+
+
+
+
+    ######## Wight Save ##########
+    file.write(str(wight[0]) + "\n" + str(wight[1]) + "\n" + str(wight[2])
+               + "\n" + str(wight[3]) + "\n" + str(bias[0]) + "\n" + str(bias[1]))
+    file.close()
+ 
+
+    def Test():
+
+        x1 = int(input("Intoduce In_1: "))
+        x2 = int(input("Intoduce In_2: "))
+
+        SumNet  = x1* DoblePercept.wight[0] + x2 * DoblePercept.wight[1] + DoblePercept.bias[0]
+        Out_1 = DoblePercept.StepFunc(SumNet)
+        SumNet2 = x1* DoblePercept.wight[2] + x2 * DoblePercept.wight[3] + DoblePercept.bias[1]
+        Out_2 = DoblePercept.StepFunc(SumNet2)
+
+        #Activation function
+
+        print("{}, {} = {}, {}".format(x1,x2,Out_1,Out_2))
+
+   
+
+    def read():
+        file = open("wight_OR.txt","r")
+        wightFile = file.read()
+        file.close()
+        wightGet = []
+
+        for p in wightFile.split("\n"):
+            wightGet.append(float(p))
+
+
+        x1 = int(input("Intoduce In_1: "))
+        x2 = int(input("Intoduce In_2: "))
+
+        SumNet  = x1 * wightGet[0] + x2 * wightGet[2] + wightGet[4]
+        Out_1 = DoblePercept.StepFunc(SumNet)
+        SumNet2 = x1 * wightGet[1] + x2 * wightGet[3] + wightGet[5]
+        Out_2 = DoblePercept.StepFunc(SumNet2)
+
+        #Activation function
+        if SumNet > 0:
+            out1 = 1
+        else: out1 =0
+
+        print("{}, {} = {}, {}".format(x1,x2,Out_1,Out_2))
+
+
+#DoblePercept.Train()
+DoblePercept.Train(DoblePercept.wight,DoblePercept.bias)
+DoblePercept.Test()
+
+
+       
+
