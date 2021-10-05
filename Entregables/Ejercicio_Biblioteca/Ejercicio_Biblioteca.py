@@ -12,7 +12,7 @@ wight = np.array([random.random()*10, random.random()*10, random.random()*10, ra
 bias  = np.array([random.random()*10,random.random()*10])
 data  = np.array([[0.7, 3, 1.5, 5],[2.0, 9, 0.9, 11],[4.2, 0, 2.2, 1],[3.6, 7,4.5,6]])
 dataTrain = np.array([[0, 0],[0, 1],[1, 0],[1, 1]])
-
+LRate = 0.3
 file  = open("wight_Biblioteca.txt", "w")
 
 class Biblioteca:
@@ -25,8 +25,11 @@ class Biblioteca:
         return out
 
 
-    def Train():
-
+    def Train(wight,bias):
+        data  = np.array([[0.7, 3, 1.5, 5],[2.0, 9, 0.9, 11],[4.2, 0, 2.2, 1],[3.6, 7,4.5,6]])
+        dataTrain = np.array([[0, 0],[0, 1],[1, 0],[1, 1]])
+        LRate = 0.3
+        file  = open("wight_Biblioteca.txt", "w")
         learn   = True
         learn01 = True
         learn02 = True
@@ -48,24 +51,26 @@ class Biblioteca:
 
                 #Activation Step Function
                 out = Biblioteca.StepFunc(Sum) 
-          
+                E1=dataTrain[i][0]-out
+         
+                if E1 != 0:
+                    wight[0]+=LRate*E1*data[i][0]
+                    wight[1]+=LRate*E1*data[i][1]
+                    bias [0]+=LRate*E1
+                    learn_1  = True
 
-                if out != dataTrain[i][0]:
-                    wight[0] = random.random() * 10 - random.random() * 10
-                    wight[2] = random.random() * 10 - random.random() * 10
-                    learn01  = True
 
-
-            for i in range(len(data)):
                 #Neuron_2
                 Sum2 = data[i][0] * wight[1] + data[i][1] * wight[3] + data[i][2] * wight[6] + data[i][3] * wight[7] + bias[1]
 
                 out2 = Biblioteca.StepFunc(Sum2)
+                E2=dataTrain[i][1]-out2
 
-                if out2 != dataTrain[i][1]:
-                    wight[1] = random.random() * 10 - random.random() * 10
-                    wight[3] = random.random() * 10 - random.random() * 10
-                    learn02  = True
+                if E2 != 0:
+                    wight[2]+=LRate*E2*data[i][0]
+                    wight[3]+=LRate*E2*data[i][1]
+                    bias [1]+=LRate*E2
+                    learn_2  = True
 
 
 
