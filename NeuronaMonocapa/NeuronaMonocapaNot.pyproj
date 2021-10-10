@@ -2,15 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>6684482c-5451-4b15-9f1e-59ee83c61dd4</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>Perceptron_OR.py</StartupFile>
+    <ProjectGuid>a82a63ac-2072-4a4a-923c-31c05b16c5c9</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>NeuronaMonocapaNot.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>PerceptronPy</Name>
-    <RootNamespace>PerceptronPy</RootNamespace>
+    <Name>NeuronaMonocapaNot</Name>
+    <RootNamespace>NeuronaMonocapa</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Perceptron_OR.py" />
+    <Compile Include="NeuronaMonocapaNot.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

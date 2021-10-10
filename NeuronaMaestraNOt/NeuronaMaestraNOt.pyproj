@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>a82a63ac-2072-4a4a-923c-31c05b16c5c9</ProjectGuid>
+    <ProjectGuid>453400ef-e141-4b7a-a649-5865325aeb08</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>NeuronaMonocapa.py</StartupFile>
+    <StartupFile>NeuronaMaestraNOt.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>NeuronaMonocapa</Name>
-    <RootNamespace>NeuronaMonocapa</RootNamespace>
+    <Name>NeuronaMaestraNOt</Name>
+    <RootNamespace>NeuronaMaestraNOt</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="NeuronaMonocapa.py" />
+    <Compile Include="NeuronaMaestraNOt.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
