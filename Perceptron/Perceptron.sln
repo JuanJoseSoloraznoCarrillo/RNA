@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Perceptron", "Perceptron.csproj", "{4E2EF9B3-BC65-4C41-8294-FC88C7D9C9EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerceptronCS", "PerceptronCS.csproj", "{4E2EF9B3-BC65-4C41-8294-FC88C7D9C9EC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PerceptronSimple", "PerceptronSimple", "{055930F9-E73F-4936-8BB1-7C01F35A3317}"
 EndProject
@@ -16,6 +16,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejercicios", "Ejercicios", "{EECEF5B7-9C9A-420F-A8AC-9055B6891C78}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Ejercicio_Biblioteca", "..\Entregables\Ejercicio_Biblioteca\Ejercicio_Biblioteca.pyproj", "{0FF36D71-C2AD-496E-B85B-F6EC42D774C3}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ClasificacionDeDigitos", "..\ClasificacionDeDigitos\ClasificacionDeDigitos.pyproj", "{98813018-EE56-4E49-8540-AB0C4C87F950}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "EjercicioDisplay", "..\EjercicioDisplay\EjercicioDisplay.pyproj", "{32D7D965-9445-4BCF-B089-FF76D27C095E}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RedNeuronalSimple_3AND", "..\RedNeuronalSimple\RedNeuronalSimple_3AND.pyproj", "{DC50622A-85E9-4B41-B374-8D76FD37AEAE}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "2XOR_Ejemplo", "..\2XOR_Maestra\2XOR_Ejemplo.pyproj", "{125B6B54-B262-40BF-BFA8-F2CB2B2D4EFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +43,14 @@ Global
 		{A82A63AC-2072-4A4A-923C-31C05B16C5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FF36D71-C2AD-496E-B85B-F6EC42D774C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0FF36D71-C2AD-496E-B85B-F6EC42D774C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98813018-EE56-4E49-8540-AB0C4C87F950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98813018-EE56-4E49-8540-AB0C4C87F950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32D7D965-9445-4BCF-B089-FF76D27C095E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32D7D965-9445-4BCF-B089-FF76D27C095E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC50622A-85E9-4B41-B374-8D76FD37AEAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC50622A-85E9-4B41-B374-8D76FD37AEAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{125B6B54-B262-40BF-BFA8-F2CB2B2D4EFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{125B6B54-B262-40BF-BFA8-F2CB2B2D4EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +61,10 @@ Global
 		{33FEEBD8-41D8-4BF4-99B4-D57F0673D471} = {EECEF5B7-9C9A-420F-A8AC-9055B6891C78}
 		{A82A63AC-2072-4A4A-923C-31C05B16C5C9} = {055930F9-E73F-4936-8BB1-7C01F35A3317}
 		{0FF36D71-C2AD-496E-B85B-F6EC42D774C3} = {EECEF5B7-9C9A-420F-A8AC-9055B6891C78}
+		{98813018-EE56-4E49-8540-AB0C4C87F950} = {EECEF5B7-9C9A-420F-A8AC-9055B6891C78}
+		{32D7D965-9445-4BCF-B089-FF76D27C095E} = {EECEF5B7-9C9A-420F-A8AC-9055B6891C78}
+		{DC50622A-85E9-4B41-B374-8D76FD37AEAE} = {055930F9-E73F-4936-8BB1-7C01F35A3317}
+		{125B6B54-B262-40BF-BFA8-F2CB2B2D4EFB} = {055930F9-E73F-4936-8BB1-7C01F35A3317}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {51FCD4B1-AE50-47AE-8F7E-17FB1480DF9D}

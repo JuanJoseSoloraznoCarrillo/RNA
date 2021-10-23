@@ -2,16 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>a2cd4d94-c593-4119-be70-aac57e15e3c7</ProjectGuid>
+    <ProjectGuid>32d7d965-9445-4bcf-b089-ff76d27c095e</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>TestTwoPerceptron.py</StartupFile>
+    <StartupFile>EjercicioDisplay.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>TestTwoPerceptron</Name>
-    <RootNamespace>TestTwoPerceptron</RootNamespace>
-    <TestFramework>Pytest</TestFramework>
+    <Name>EjercicioDisplay</Name>
+    <RootNamespace>EjercicioDisplay</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="TestTwoPerceptron.py" />
+    <Compile Include="EjercicioDisplay.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

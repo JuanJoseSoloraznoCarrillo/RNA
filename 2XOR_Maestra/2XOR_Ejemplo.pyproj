@@ -2,15 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>453400ef-e141-4b7a-a649-5865325aeb08</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>NeuronaMaestraNOt.py</StartupFile>
+    <ProjectGuid>125b6b54-b262-40bf-bfa8-f2cb2b2d4efb</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>_2XOR_Maestra.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>NeuronaMaestraNOt</Name>
-    <RootNamespace>NeuronaMaestraNOt</RootNamespace>
+    <Name>2XOR_Ejemplo</Name>
+    <RootNamespace>2XOR_Maestra</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="NeuronaMaestraNOt.py" />
+    <Compile Include="_2XOR_Maestra.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
