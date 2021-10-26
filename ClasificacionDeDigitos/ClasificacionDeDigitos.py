@@ -3,27 +3,29 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-inputs=np.array([[1,1,1,1,1,1,0,1],
-                 [0,1,1,0,0,0,0,1],
-                 [1,1,0,1,1,0,1,1],
-                 [1,1,1,1,0,0,1,1],
-                 [0,1,1,0,0,1,1,1],
-                 [1,0,1,1,0,1,1,1],
-                 [1,0,1,1,1,1,1,1],
-                 [1,1,1,0,0,0,0,1],
-                 [1,1,1,1,1,1,1,1],
-                 [1,1,1,1,0,1,1,1]])#entradas
+#Segmentos del LED
+inputs=np.array([[1,1,1,1,1,1,0,1], #0
+                 [0,1,1,0,0,0,0,1], #1
+                 [1,1,0,1,1,0,1,1], #2
+                 [1,1,1,1,0,0,1,1], #3
+                 [0,1,1,0,0,1,1,1], #4
+                 [1,0,1,1,0,1,1,1], #5
+                 [1,0,1,1,1,1,1,1], #6
+                 [1,1,1,0,0,0,0,1], #7
+                 [1,1,1,1,1,1,1,1], #0
+                 [1,1,1,1,0,1,1,1]])#9   #entradas
 
-y=np.array([[1,0,0], #0
-            [0,1,0], #1
-            [1,0,0], #2
-            [0,1,0], #3
-            [1,0,0], #4
-            [0,1,0], #5
-            [1,0,0], #6
-            [0,1,1], #7
-            [1,0,1], #8
-            [0,1,1]])#9   #Salidas
+#Interpretación de la salida
+y=np.array([[1,0,0], #0 Es par   y menor a 7
+            [0,1,0], #1 Es impar y menor a 7
+            [1,0,0], #2 Es par   y menor a 7
+            [0,1,0], #3 Es impar y menor a 7
+            [1,0,0], #4 Es par   y menor a 7
+            [0,1,0], #5 Es impar y menor a 7
+            [1,0,0], #6 Es par   y menor a 7
+            [0,1,1], #7 Es impar y mayor o igual a 7
+            [1,0,1], #8 Es par   y mayor o igual a 7
+            [0,1,1]])#9 Es impar y mayor o igual a 7  #Salidas
 
 class NeuralNet():
     ''' Red neuronal'''
@@ -86,16 +88,16 @@ def entrenar(tol,lr,datosIN):
         errors.append(error)
     return errors
 
-def salida():
+def salida(values):
     '''Interpreta la salida de la red neuronal'''
-    print("\nLa interpretación es: \n")
+    print("\nInterpretación de la salida: \n")
     for v in range(len(values)):
         if(values[v][0]==1 and values[v][2]==0):
-            print("El número: ",v," Es par")
+            print("El número: ",v," Es par   y menor a 7")
         if(values[v][1]==1 and values[v][2]==0):
-            print("El número: ",v," Es impar")
+            print("El número: ",v," Es impar y menor a 7")
         if(values[v][2]==1 and values[v][0]==1):
-            print("El número: ",v," Es par y mayor o igual a 7")
+            print("El número: ",v," Es par   y mayor o igual a 7")
         if(values[v][2]==1 and values[v][1]==1):
             print("El número: ",v," Es impar y mayor o igual a 7")
 
@@ -112,9 +114,10 @@ print("\nÉpocas = ", len(errors))
 values = redondear(inputs)
 
 print("\n Despues: \n\n ",values)
-salida()
+salida(values)
 
 'plot'
 x_axis=range(0, len(errors))
 plt.plot(x_axis, errors)
 plt.show()
+
