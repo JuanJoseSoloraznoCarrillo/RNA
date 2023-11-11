@@ -10,20 +10,24 @@ def command_line():
     args.pop(0) #removing the module name in the arguments.
     _type = None
     info = []
-    if 'train' in args:
-        info.append(True)
-        args.remove('train')
+    try:
+        if 'train' in args:
+            info.append(True)
+            args.remove('train')
 
-    if 'or' in args:
-        _type = 'or'
-    elif 'and' in args:
-        _type = 'and'
-    else:
-        print('[!] Gate "%s" not implemented yet.'%args[0])
-        print('You can choose: "or", "and"')
-    info.append(_type)
+        if 'or' in args:
+            _type = 'or'
+        elif 'and' in args:
+            _type = 'and'
+        else:
+            print('[!] Gate "%s" not implemented yet.'%args[0])
+            print('You can choose: "or", "and"')
+        info.append(_type)
 
-    return info
+        return info
+    except:
+        print('Usage: perceptron.py [-neuron type <"or","and">] [-training <"train">]')
+        exit()
 
 #------ Class implementation -----#
 class Perceptron(object):
@@ -75,8 +79,6 @@ class Perceptron(object):
         EPOCH = 0
         FILE = open("wight_OR.txt", "w")
 
-        """
-        """
         while LEARN:
             LEARN = False
             EPOCH += 1
@@ -97,8 +99,6 @@ class Perceptron(object):
                     WIGHT[1] = random.random() * 10 - random.random() * 10
                     WIGHT[2] = random.random() * 10 - random.random() * 10
                     LEARN = True
-        print("\n")
-        
         ######## Wight Save ##########
         FILE.write(str(WIGHT[0]) + "\n" + str(WIGHT[1]) + "\n" + str(WIGHT[2]))
         FILE.close()
