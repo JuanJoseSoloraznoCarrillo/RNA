@@ -1,68 +1,19 @@
-
-#### Libraries ####
-import random
+#------ Libraries ------#
+import random,os
 import numpy as np
-import os
 
-######  Data_OR  #########
-data  = np.array([[0,0,0],[0,1,1],[1,0,1],[1,1,1]])
-wight = np.array([random.random()*10, random.random()*10, random.random()*10])
-learn = True
-out   = float(2.5)
-epoch = 0
-file  = open("wight_OR.txt", "w")
+#------ Class implementation -----#
+class Perceptron(object):
+    """
+    """
 
-#########  Training  ##########
-while learn:
-    
-    learn = False
-    epoch += 1
-    print(" Training: ", epoch, " wight -----> ", wight)
+    def __init__(self, file_path=".",train=False):
+        """
+        """
+        if train:
+            self.training()
 
-    for i in range(len(data)):
-
-        #Neuron
-        Sum = data[i][0] * wight[0] + data[i][1] * wight[1] + wight[2]
-
-        #Activation Step Function 
-        if Sum > 0:
-            out = 1
-        else: out =0
-
-        if out != data[i][2]:
-            wight[0] = random.random() * 10 - random.random() * 10
-            wight[1] = random.random() * 10 - random.random() * 10
-            wight[2] = random.random() * 10 - random.random() * 10
-            learn = True
-           
-   
-print("\n")
-
-
-
-############## Neuoron test ###############
-"""
-for i in range(len(data)):
-    
-    Sum = data[i][0] * wight[0] + data[i][1] * wight[1] + wight[2]
-
-    if Sum > 0:
-        out = 1
-    else: out = 0
-    print(" In(1):", data2[i][0], " In(2)",data[i][1], "=", data[i][2], "------> Out = ", out, )"""
-
-
-
-
-######## Wight Save ##########
-file.write(str(wight[0]) + "\n" + str(wight[1]) + "\n" + str(wight[2]))
-file.close()
-print("\n")
-
-####### Read file ###########
-class readData:
-    
-    def read():
+    def read(self):
         file = open("wight_OR.txt","r")
         wightFile = file.read()
         file.close()
@@ -70,7 +21,6 @@ class readData:
 
         for p in wightFile.split("\n"):
             wightGet.append(float(p))
-
 
         x1 = int(input("Intoduce In_1: "))
         x2 = int(input("Intoduce In_2: "))
@@ -84,11 +34,44 @@ class readData:
 
         print("{}, {} = {}".format(x1,x2,out1))
 
-readData.read()
+    def training(self):
+        DATA   = np.array([[0,0,0],[0,1,1],[1,0,1],[1,1,1]])
+        WIGHT = np.array([random.random()*10, random.random()*10, random.random()*10])
+        LEARN = True
+        OUT = 2.50
+        EPOCH = 0
+        FILE = open("wight_OR.txt", "w")
+
+        """
+        """
+        while LEARN:
+            LEARN = False
+            EPOCH += 1
+            print(" Training: ", EPOCH, " wight -----> ", WIGHT)
+        
+            for i in range(len(DATA)):
+        
+                #Neuron
+                Sum = DATA[i][0] * WIGHT[0] + DATA[i][1] * WIGHT[1] + WIGHT[2]
+        
+                #Activation Step Function 
+                if Sum > 0:
+                    out = 1
+                else: out =0
+        
+                if out != DATA[i][2]:
+                    WIGHT[0] = random.random() * 10 - random.random() * 10
+                    WIGHT[1] = random.random() * 10 - random.random() * 10
+                    WIGHT[2] = random.random() * 10 - random.random() * 10
+                    LEARN = True
+        print("\n")
+        
+        ######## Wight Save ##########
+        FILE.write(str(WIGHT[0]) + "\n" + str(WIGHT[1]) + "\n" + str(WIGHT[2]))
+        FILE.close()
+        print("\n")
+
+if __name__ == '__main__':
+    or_gate = Perceptron()
 
 
-
-
-
-
- 
