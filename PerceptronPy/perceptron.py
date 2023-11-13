@@ -1,11 +1,12 @@
 #------ Libraries ------#
 import random,os,sys
+from activation_functions import unitStep
 import numpy as np
 
+#:Command-Line-Method {{{
 def command_line():
     """
     """
-    module_name = os.path.basename(__file__) #getting the module name
     args = sys.argv
     args.pop(0) #removing the module name in the arguments.
     _type = None
@@ -19,6 +20,8 @@ def command_line():
             _type = 'or'
         elif 'and' in args:
             _type = 'and'
+        elif 'info' in args:
+            print()
         else:
             print('[!] Gate "%s" not implemented yet.'%args[0])
             print('You can choose: "or", "and"')
@@ -26,8 +29,9 @@ def command_line():
 
         return info
     except:
-        print('Usage: perceptron.py [-neuron type <"or","and">] [-training <"train">]')
+        print('Usage: perceptron.py [-neuron type <"or","and">] [-training <"train">] [-info <"info">]')
         exit()
+        }}}
 
 #------ Class implementation -----#
 class Perceptron(object):
@@ -36,13 +40,13 @@ class Perceptron(object):
     @Attributes:
         -
     """
-
     def __init__(self, info):
         """
         """
         if True in info:
             self.training()
             info.remove(True)
+
         self.neuron_type = info.pop()
         print('Neuron type: %s'%self.neuron_type)
 
@@ -50,61 +54,56 @@ class Perceptron(object):
         """
         """
         if self.neuron_type:
-            
-            file = open("wight_OR.txt","r")
-            wightFile = file.read()
+
+            file = open("weights.txt","r")
+            weights_file = file.read()
             file.close()
-            wightGet = []
+            weights = []
 
-            for p in wightFile.split("\n"):
-                wightGet.append(float(p))
+            for weight in weights_file.split("\n"):
+                weights.append(float(weight))
 
-            x1 = int(input("Intoduce In_1: "))
-            x2 = int(input("Intoduce In_2: "))
+            x1 = int(input("In_1: "))
+            x2 = int(input("In_2: "))
 
-            SumNet = x1 * wightGet[0] + x2 * wightGet[1] + wightGet[2]
+            _sum = x1 * weights[0] + x2 * weights[1] + weights[2]
+            out = unitStep(_sum)
 
-            #Activation function
-            if SumNet > 0:
-                out1 = 1
-            else: out1 =0
-
-            print("{}, {} = {}".format(x1,x2,out1))
+            print("{}, {} = {}".format(x1,x2,out))
 
     def training(self):
         DATA   = np.array([[0,0,0],[0,1,1],[1,0,1],[1,1,1]])
-        WIGHT = np.array([random.random()*10, random.random()*10, random.random()*10])
+        WEIGHT = np.array([random.random()*10, random.random()*10, random.random()*10])
         LEARN = True
         OUT = 2.50
         EPOCH = 0
-        FILE = open("wight_OR.txt", "w")
+        FILE = open("weights.txt", "w")
 
         while LEARN:
             LEARN = False
             EPOCH += 1
-            print(" Training: ", EPOCH, " wight -----> ", WIGHT)
-        
+            print(" Training: ", EPOCH, " weight -----> ", WEIGHT)
+
             for i in range(len(DATA)):
-        
+
                 #Neuron
-                Sum = DATA[i][0] * WIGHT[0] + DATA[i][1] * WIGHT[1] + WIGHT[2]
-        
+                _sum = DATA[i][0] * WEIGHT[0] + DATA[i][1] * WEIGHT[1] + WEIGHT[2]
+
                 #Activation Step Function 
-                if Sum > 0:
-                    out = 1
-                else: out =0
-        
+                out = unitStep(_sum)
                 if out != DATA[i][2]:
-                    WIGHT[0] = random.random() * 10 - random.random() * 10
-                    WIGHT[1] = random.random() * 10 - random.random() * 10
-                    WIGHT[2] = random.random() * 10 - random.random() * 10
+
+                    WEIGHT[0] = random.random() * 10 - random.random() * 10
+                    WEIGHT[1] = random.random() * 10 - random.random() * 10
+                    WEIGHT[2] = random.random() * 10 - random.random() * 10
                     LEARN = True
-        ######## Wight Save ##########
-        FILE.write(str(WIGHT[0]) + "\n" + str(WIGHT[1]) + "\n" + str(WIGHT[2]))
+        ######## Weight Save ##########
+        FILE.write(str(WEIGHT[0]) + "\n" + str(WEIGHT[1]) + "\n" + str(WEIGHT[2]))
         FILE.close()
         print("\n")
 
 if __name__ == '__main__':
-    user_input = command_line()
+    user_input = command_line() # if the user use the script through a command line
     neuron = Perceptron(info=user_input)
     neuron.start()
+
