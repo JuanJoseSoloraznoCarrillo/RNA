@@ -31,7 +31,7 @@ def command_line():
     except:
         print('Usage: perceptron.py [-neuron type <"or","and">] [-training <"train">] [-info <"info">]')
         exit()
-        }}}
+#}}}
 
 #------ Class implementation -----#
 class Perceptron(object):
