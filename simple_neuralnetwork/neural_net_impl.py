@@ -67,7 +67,7 @@ def main():
 
     # Print initial predictions before training
     print("Initial Predictions:")
-    print(nn.forward(inputs)
+    print(nn.forward(inputs))
 
     # Train the neural network using backpropagation until the error is below 0.01
     errors = []
@@ -89,4 +89,3 @@ def main():
     plt.ylabel('Mean Squared Error')
     plt.title('Training Error Over Iterations')
     plt.show()
-

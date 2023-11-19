@@ -1,17 +1,27 @@
+"""
+how to use this module:
+    the way to use it is very simple, as you might know, this is a python module.
+"""
+
 #------ Libraries ------#
-import random,os,sys
+import random
+import sys
 from activation_functions import unitStep
 import numpy as np
 
-#:Command-Line-Method {{{
+
 def command_line():
     """
+    how to use this function
+
     """
     args = sys.argv
-    args.pop(0) #removing the module name in the arguments.
+    args.pop(0) 
     _type = None
     info = []
-    try:
+
+    if len(args) > 0:
+
         if 'train' in args:
             info.append(True)
             args.remove('train')
@@ -28,12 +38,10 @@ def command_line():
         info.append(_type)
 
         return info
-    except:
+    else:
         print('Usage: perceptron.py [-neuron type <"or","and">] [-training <"train">] [-info <"info">]')
-        exit()
-#}}}
+        raise NameError('[!] Use correct arguments')
 
-#------ Class implementation -----#
 class Perceptron(object):
     """
     @Public class: Perceptron.
@@ -72,10 +80,10 @@ class Perceptron(object):
             print("{}, {} = {}".format(x1,x2,out))
 
     def training(self):
+
         DATA   = np.array([[0,0,0],[0,1,1],[1,0,1],[1,1,1]])
         WEIGHT = np.array([random.random()*10, random.random()*10, random.random()*10])
         LEARN = True
-        OUT = 2.50
         EPOCH = 0
         FILE = open("weights.txt", "w")
 
